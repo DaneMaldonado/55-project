@@ -59,6 +59,9 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile6`, function (sprite, l
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
     game.gameOver(false)
 })
+controller.anyButton.onEvent(ControllerButtonEvent.Pressed, function () {
+    CopCar.follow(ChaseCar, 85)
+})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile7`, function (sprite, location) {
     tiles.setTileAt(location, assets.tile`myTile9`)
     scene.cameraShake(2, 500)
@@ -218,7 +221,6 @@ function SetCopCar () {
             . . . . f f . . . . . . f f . . 
             `, SpriteKind.Enemy)
         tiles.placeOnTile(CopCar, value)
-        CopCar.follow(ChaseCar, 50)
     }
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.skillmap.islandTile4, function (sprite, location) {
@@ -228,5 +230,9 @@ scene.onOverlapTile(SpriteKind.Player, sprites.skillmap.islandTile4, function (s
 let CopCar: Sprite = null
 let ChaseCar: Sprite = null
 tiles.setCurrentTilemap(tilemap`level2`)
+info.setScore(0)
 SetChaseCar()
 SetCopCar()
+game.onUpdateInterval(1000, function () {
+    info.changeScoreBy(1)
+})
