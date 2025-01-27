@@ -2,8 +2,7 @@
     "name": "5.5 Project",
     "description": "",
     "dependencies": {
-        "device": "*",
-        "arcade-character-animations": "github:microsoft/arcade-character-animations#v0.0.2"
+        "device": "*"
     },
     "files": [
         "main.blocks",
