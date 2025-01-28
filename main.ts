@@ -62,6 +62,9 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, lo
 controller.anyButton.onEvent(ControllerButtonEvent.Pressed, function () {
     CopCar.follow(ChaseCar, 85)
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile15`, function (sprite, location) {
+	
+})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile7`, function (sprite, location) {
     tiles.setTileAt(location, assets.tile`myTile9`)
     scene.cameraShake(2, 500)
@@ -105,8 +108,13 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     )
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.skillmap.islandTile3, function (sprite, location) {
-    tiles.setTileAt(location, assets.tile`myTile9`)
     scene.cameraShake(2, 500)
+    tiles.setTileAt(location, assets.tile`myTile9`)
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile16`, function (sprite, location) {
+    tiles.setTileAt(tiles.getTileLocation(3, 14), assets.tile`myTile15`)
+    tiles.setTileAt(tiles.getTileLocation(2, 13), assets.tile`myTile15`)
+    tiles.setTileAt(tiles.getTileLocation(1, 12), assets.tile`myTile15`)
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -138,6 +146,10 @@ scene.onOverlapTile(SpriteKind.Enemy, sprites.builtin.brick, function (sprite, l
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     game.gameOver(false)
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile8`, function (sprite, location) {
+    scene.cameraShake(2, 500)
+    tiles.setTileAt(location, assets.tile`myTile9`)
 })
 function PullOutCopCar () {
     for (let value of tiles.getTilesByType(assets.tile`CopCarPullOut`)) {
@@ -192,6 +204,10 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile2`, function (sprite, l
     tiles.setTileAt(location, assets.tile`myTile9`)
     scene.cameraShake(2, 500)
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile10`, function (sprite, location) {
+    scene.cameraShake(2, 500)
+    tiles.setTileAt(location, assets.tile`myTile9`)
+})
 scene.onOverlapTile(SpriteKind.Player, sprites.skillmap.islandTile1, function (sprite, location) {
     tiles.setTileAt(location, assets.tile`myTile9`)
     scene.cameraShake(2, 500)
@@ -226,6 +242,10 @@ function SetCopCar () {
 scene.onOverlapTile(SpriteKind.Player, sprites.skillmap.islandTile4, function (sprite, location) {
     tiles.setTileAt(location, assets.tile`myTile9`)
     scene.cameraShake(2, 500)
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile14`, function (sprite, location) {
+    scene.cameraShake(2, 500)
+    tiles.setTileAt(location, assets.tile`myTile9`)
 })
 let CopCar: Sprite = null
 let ChaseCar: Sprite = null

@@ -42,6 +42,14 @@ namespace myTiles {
     export const tile19 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile20 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile23 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile22 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile21 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile24 = image.ofBuffer(hex``);
 
     helpers._registerFactory("tilemap", function(name: string) {
         switch(helpers.stringTrim(name)) {
@@ -65,7 +73,7 @@ namespace myTiles {
 . . . . . . . . . . . . . . . . 
 `, [myTiles.transparency16], TileScale.Sixteen);
             case "level2":
-            case "level2":return tiles.createTilemap(hex`0a0026000a030303030c01010a0c0515040415060101050605040415040601010506050415040406010105060515040415060101050605090909090b01010506130202020202020205061302020202020202050613020202020202020506130101010a030303040613010101050704070406130101010d0909090406130202020202020205061302020202020202050613020202020202020506050303030c1212080506050404140612121205060514040406121212050605040414060812120506051404040612121205060504041406010101050605140404060101010506050404140601080105060d0909090b01010105060202020202020202050610020202020202020506020202020202020205060a0c1111110a030304060506080101050704040605060101010504040706050601010105070404060506010108050404040605060101010504040406050601010105040404060506010e01050404040605060101010504040406050601010105040404060d0b010f010d0909090b`, img`
+            case "level2":return tiles.createTilemap(hex`0a0026000a030303030c01010a0c0515040415060101050605040415040601010506050415040406010105060515040415060101050605090909090b01010506130202020202020205061302020202020202050613020202020202020506130101010a030303040613010108050704070406130101010d0909090406131702021616020205061302170216160202050613170217161602020506050303030c1212080506050404140612121205060514040406121212050605040414060812120506051404040612121205060504041406010101050605140404060101010506050404140601080105060d0909090b01010105060202020202020202050610020202020202020506020202020202020205060a0c1111110a030304060506080101050704040605060101010504040706050601010105070404060506010108050404040605060101010504040406050601010105040404060506010e01050404040605060101010504040406050601010105040404060d0b010f010d0909090b`, img`
 ..........
 ..........
 ..........
@@ -104,7 +112,7 @@ namespace myTiles {
 ..........
 ..........
 ..........
-`, [myTiles.transparency16,sprites.vehicle.roadVertical,sprites.vehicle.roadHorizontal,sprites.skillmap.islandTile1,sprites.skillmap.islandTile4,sprites.skillmap.islandTile3,sprites.skillmap.islandTile5,myTiles.tile1,sprites.builtin.brick,myTiles.tile3,myTiles.tile4,myTiles.tile6,myTiles.tile8,myTiles.tile9,myTiles.tile10,myTiles.tile12,myTiles.tile13,myTiles.tile14,myTiles.tile15,myTiles.tile16,myTiles.tile17,myTiles.tile20], TileScale.Sixteen);
+`, [myTiles.transparency16,sprites.vehicle.roadVertical,sprites.vehicle.roadHorizontal,sprites.skillmap.islandTile1,sprites.skillmap.islandTile4,sprites.skillmap.islandTile3,sprites.skillmap.islandTile5,myTiles.tile1,sprites.builtin.brick,myTiles.tile3,myTiles.tile4,myTiles.tile6,myTiles.tile8,myTiles.tile9,myTiles.tile10,myTiles.tile12,myTiles.tile13,myTiles.tile14,myTiles.tile15,myTiles.tile16,myTiles.tile17,myTiles.tile20,myTiles.tile22,myTiles.tile24], TileScale.Sixteen);
         }
         return null;
     })
@@ -152,6 +160,14 @@ namespace myTiles {
             case "tile19":return tile19;
             case "myTile14":
             case "tile20":return tile20;
+            case "myTile17":
+            case "tile23":return tile23;
+            case "myTile16":
+            case "tile22":return tile22;
+            case "myTile15":
+            case "tile21":return tile21;
+            case "myTile18":
+            case "tile24":return tile24;
         }
         return null;
     })
