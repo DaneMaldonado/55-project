@@ -29,6 +29,12 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, l
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile19`, function (sprite, location) {
     tiles.setCurrentTilemap(tilemap`level1`)
+    scene.cameraFollowSprite(ChaseCar)
+    ChaseCar.setPosition(80, 560)
+    CopCar.setPosition(80, 590)
+    info.startCountdown(5)
+    info.changeScoreBy(1)
+    pause(5000)
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -256,6 +262,3 @@ tiles.setCurrentTilemap(tilemap`level2`)
 info.setScore(0)
 SetChaseCar()
 SetCopCar()
-game.onUpdateInterval(1000, function () {
-    info.changeScoreBy(1)
-})
