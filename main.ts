@@ -27,6 +27,9 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, l
     tiles.setTileAt(location, assets.tile`myTile9`)
     scene.cameraShake(2, 500)
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile19`, function (sprite, location) {
+    tiles.setCurrentTilemap(tilemap`level1`)
+})
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     ChaseCar,
