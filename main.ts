@@ -1,3 +1,6 @@
+namespace SpriteKind {
+    export const OverlapChangeLevel = SpriteKind.create()
+}
 function SetChaseCar () {
     for (let value of tiles.getTilesByType(assets.tile`SpawnChaseCar`)) {
         ChaseCar = sprites.create(img`
@@ -24,15 +27,14 @@ function SetChaseCar () {
     }
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, location) {
-    tiles.setTileAt(location, assets.tile`myTile9`)
-    scene.cameraShake(2, 500)
+	
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile19`, function (sprite, location) {
     tiles.setCurrentTilemap(tilemap`level1`)
     scene.cameraFollowSprite(ChaseCar)
-    ChaseCar.setPosition(80, 540)
-    CopCar.setPosition(80, 600)
     info.changeScoreBy(1)
+    ChaseCar.setPosition(80, 540)
+    SetCopCar()
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -59,9 +61,12 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.OverlapChangeLevel, function (sprite, otherSprite) {
+    sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+    sprites.destroyAllSpritesOfKind(SpriteKind.OverlapChangeLevel)
+})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile6`, function (sprite, location) {
-    scene.cameraShake(2, 500)
-    tiles.setTileAt(location, assets.tile`myTile9`)
+	
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
     game.gameOver(false)
@@ -73,12 +78,10 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile15`, function (sprite, 
 	
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile7`, function (sprite, location) {
-    tiles.setTileAt(location, assets.tile`myTile9`)
-    scene.cameraShake(2, 500)
+	
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile4`, function (sprite, location) {
-    tiles.setTileAt(location, assets.tile`myTile9`)
-    scene.cameraShake(2, 500)
+	
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`EnemyOverlap1`, function (sprite, location) {
     for (let value of tiles.getTilesByType(assets.tile`EnemyOverlap1`)) {
@@ -115,8 +118,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     )
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.skillmap.islandTile3, function (sprite, location) {
-    scene.cameraShake(2, 500)
-    tiles.setTileAt(location, assets.tile`myTile9`)
+	
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile16`, function (sprite, location) {
     tiles.setTileAt(tiles.getTileLocation(3, 14), assets.tile`myTile15`)
@@ -155,28 +157,27 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSp
     game.gameOver(false)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile8`, function (sprite, location) {
-    scene.cameraShake(2, 500)
-    tiles.setTileAt(location, assets.tile`myTile9`)
+	
 })
 function PullOutCopCar () {
     for (let value of tiles.getTilesByType(assets.tile`CopCarPullOut`)) {
         CopCar = sprites.create(img`
-            . . . . . . . . . . . . . . . . 
-            . . . . 6 6 6 6 6 6 6 6 . . . . 
-            . . . 6 9 6 6 6 6 6 6 c 6 . . . 
-            . . 6 c 9 6 6 6 6 6 6 c c 6 . . 
-            . 6 c c 9 9 9 9 9 9 6 c c 9 6 d 
-            . 6 c 6 8 8 8 8 8 8 8 b c 9 6 6 
-            . 6 6 8 b b 8 b b b 8 8 b 9 6 6 
-            . 6 8 b b b 8 b b b b 8 6 6 6 6 
-            . 8 8 6 6 6 8 6 6 6 6 6 8 6 6 6 
-            . 8 8 8 8 8 8 f 8 8 8 f 8 6 d d 
-            . 8 8 8 8 8 8 f 8 8 f 8 8 8 6 d 
-            . 8 8 8 8 8 8 f f f 8 8 8 8 8 8 
-            . 8 f f f f 8 8 8 8 f f f 8 8 8 
-            . . f f f f f 8 8 f f f f f 8 . 
-            . . . f f f . . . . f f f f . . 
-            . . . . . . . . . . . . . . . . 
+            . . . . . . 8 8 c c 8 8 . . . . 
+            . . . . . 8 6 6 6 6 6 6 8 . . . 
+            . . . . 6 c 6 6 6 6 6 6 c 6 . . 
+            . . . 8 6 c 9 6 6 6 6 6 c 6 8 . 
+            . . . f 6 6 9 6 6 6 6 6 c 6 f . 
+            . . . f 6 6 9 6 6 6 6 6 6 6 f . 
+            . . . f 6 6 9 6 6 6 6 6 6 6 f . 
+            . . . f 6 c 6 9 9 6 6 6 c 6 f . 
+            . . . 8 6 c 8 c c c c 8 c 6 8 . 
+            . . . 8 6 8 c b b b b c 8 6 8 . 
+            . . . 8 6 8 b b b b b b 8 6 8 . 
+            . . . 8 8 8 8 8 8 8 8 8 8 8 8 . 
+            . . . f 8 d 8 8 8 8 8 8 d 8 f . 
+            . . . f 8 6 d 8 8 8 8 d 6 8 f . 
+            . . . f f 8 8 8 8 8 8 8 8 f f . 
+            . . . . f f . . . . . . f f . . 
             `, SpriteKind.Enemy)
         tiles.placeOnTile(CopCar, value)
         CopCar.follow(ChaseCar, 50)
@@ -208,20 +209,19 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     )
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile2`, function (sprite, location) {
-    tiles.setTileAt(location, assets.tile`myTile9`)
-    scene.cameraShake(2, 500)
+	
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile10`, function (sprite, location) {
-    scene.cameraShake(2, 500)
-    tiles.setTileAt(location, assets.tile`myTile9`)
+	
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.skillmap.islandTile1, function (sprite, location) {
-    tiles.setTileAt(location, assets.tile`myTile9`)
-    scene.cameraShake(2, 500)
+	
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.skillmap.islandTile5, function (sprite, location) {
-    scene.cameraShake(2, 500)
-    tiles.setTileAt(location, assets.tile`myTile9`)
+	
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`transparency16`, function (sprite, location) {
+	
 })
 function SetCopCar () {
     for (let value of tiles.getTilesByType(assets.tile`SpawnCopCar`)) {
@@ -247,16 +247,42 @@ function SetCopCar () {
     }
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.skillmap.islandTile4, function (sprite, location) {
-    tiles.setTileAt(location, assets.tile`myTile9`)
-    scene.cameraShake(2, 500)
+	
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile14`, function (sprite, location) {
-    scene.cameraShake(2, 500)
-    tiles.setTileAt(location, assets.tile`myTile9`)
+	
 })
 let CopCar: Sprite = null
 let ChaseCar: Sprite = null
 tiles.setCurrentTilemap(tilemap`level2`)
+let OverlapDestroyPullOutCar = sprites.create(img`
+    666................................666
+    666................................666
+    666................................666
+    666................................666
+    666................................666
+    666................................666
+    666................................666
+    666................................666
+    666................................666
+    666................................666
+    666................................666
+    666................................666
+    666................................666
+    666................................666
+    66666666666666666666666666666666666666
+    66666666666666666666666666666666666666
+    66666666666666666666666666666666666666
+    66666666666666666666666666666666666666
+    `, SpriteKind.OverlapChangeLevel)
+OverlapDestroyPullOutCar.x = 112
+OverlapDestroyPullOutCar.y = 10
 info.setScore(0)
 SetChaseCar()
 SetCopCar()
+game.onUpdate(function () {
+    if (tiles.tileAtLocationEquals(ChaseCar.tilemapLocation(), assets.tile`myTile10`) || (tiles.tileAtLocationEquals(ChaseCar.tilemapLocation(), sprites.skillmap.islandTile3) || (tiles.tileAtLocationEquals(ChaseCar.tilemapLocation(), assets.tile`myTile10`) || (tiles.tileAtLocationEquals(ChaseCar.tilemapLocation(), assets.tile`myTile8`) || (tiles.tileAtLocationEquals(ChaseCar.tilemapLocation(), assets.tile`myTile6`) || (tiles.tileAtLocationEquals(ChaseCar.tilemapLocation(), sprites.skillmap.islandTile5) || (tiles.tileAtLocationEquals(ChaseCar.tilemapLocation(), sprites.skillmap.islandTile1) || (tiles.tileAtLocationEquals(ChaseCar.tilemapLocation(), assets.tile`myTile7`) || (tiles.tileAtLocationEquals(ChaseCar.tilemapLocation(), assets.tile`myTile1`) || (tiles.tileAtLocationEquals(ChaseCar.tilemapLocation(), assets.tile`myTile2`) || (tiles.tileAtLocationEquals(ChaseCar.tilemapLocation(), assets.tile`myTile4`) || tiles.tileAtLocationEquals(ChaseCar.tilemapLocation(), sprites.skillmap.islandTile4)))))))))))) {
+        tiles.setTileAt(ChaseCar.tilemapLocation(), assets.tile`myTile9`)
+        scene.cameraShake(2, 500)
+    }
+})
