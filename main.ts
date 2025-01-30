@@ -250,3 +250,6 @@ game.onUpdate(function () {
         scene.cameraShake(2, 500)
     }
 })
+game.onUpdateInterval(1000, function () {
+    controller.moveSprite(ChaseCar, 100, 100)
+})
