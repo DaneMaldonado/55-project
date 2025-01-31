@@ -274,6 +274,7 @@ function CollectCoins1 () {
         500,
         true
         )
+        tiles.setTileAt(value, sprites.vehicle.roadVertical)
     }
 }
 function SetCopCar2 () {
@@ -330,6 +331,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 })
 function CollectCoins2 () {
     for (let value of tiles.getTilesByType(assets.tile`myTile26`)) {
+        tiles.setTileAt(value, assets.tile`myTile13`)
         Coins = sprites.create(img`
             . . b b b b . . 
             . b 5 5 5 5 b . 
@@ -402,9 +404,6 @@ function CollectCoins2 () {
         500,
         true
         )
-    }
-    if (true) {
-    	
     }
 }
 function SetCopCar () {
