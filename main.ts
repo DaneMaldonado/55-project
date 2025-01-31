@@ -2,36 +2,11 @@ namespace SpriteKind {
     export const OverlapChangeLevel = SpriteKind.create()
     export const CoinsCollect = SpriteKind.create()
 }
-function SetChaseCar () {
-    for (let value of tiles.getTilesByType(assets.tile`SpawnChaseCar`)) {
-        MainCar = sprites.create(img`
-            . . . . . . e e c c e e . . . . 
-            . . . . . e 2 2 2 2 2 2 e . . . 
-            . . . . 2 c 2 2 2 2 2 2 c 2 . . 
-            . . . e 2 c 4 2 2 2 2 2 c 2 e . 
-            . . . f 2 2 4 2 2 2 2 2 c 2 f . 
-            . . . f 2 2 4 2 2 2 2 2 2 2 f . 
-            . . . f 2 2 4 2 2 2 2 2 2 2 f . 
-            . . . f 2 c 2 4 4 2 2 2 c 2 f . 
-            . . . e 2 c e c c c c e c 2 e . 
-            . . . e 2 e c b b b b c e 2 e . 
-            . . . e 2 e b b b b b b e 2 e . 
-            . . . e e e e e e e e e e e e . 
-            . . . f e d e e e e e e d e f . 
-            . . . f e 2 d e e e e d 2 e f . 
-            . . . f f e e e e e e e e f f . 
-            . . . . f f . . . . . . f f . . 
-            `, SpriteKind.Player)
-        tiles.placeOnTile(MainCar, value)
-        scene.cameraFollowSprite(MainCar)
-        controller.moveSprite(MainCar)
-    }
-}
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile19`, function (sprite, location) {
-    tiles.setCurrentTilemap(tilemap`level4`)
     sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
     sprites.destroyAllSpritesOfKind(SpriteKind.Player)
-    SetChaseCar()
+    tiles.setCurrentTilemap(tilemap`level4`)
+    SpawnMainCar()
     SetCopCar2()
     info.changeScoreBy(1)
     game.splash("Level 2")
@@ -79,13 +54,12 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile15`, function (sprite, 
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile22`, function (sprite, location) {
     sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Player)
     tiles.setCurrentTilemap(tilemap`level1`)
-    scene.cameraFollowSprite(MainCar)
-    info.changeScoreBy(1)
-    MainCar.setPosition(70, 600)
-    game.splash("Level 3")
-    pause(1000)
+    SpawnMainCar()
     CollectCoins2()
+    info.changeScoreBy(1)
+    game.splash("Level 3")
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`EnemyOverlap1`, function (sprite, location) {
     for (let value of tiles.getTilesByType(assets.tile`EnemyOverlap1`)) {
@@ -328,7 +302,7 @@ function SetCopCar2 () {
 }
 function GameWin () {
     for (let value of tiles.getTilesByType(assets.tile`myTile24`)) {
-        MainCar = sprites.create(img`
+        PlayerWinGame = sprites.create(img`
             . . . . . . . . . . . . . . . . 
             . . . . . . 6 6 6 6 . . . . . . 
             . . . . 6 6 6 5 5 6 6 6 . . . . 
@@ -346,7 +320,7 @@ function GameWin () {
             . . . . . . 6 6 6 6 . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.Food)
-        tiles.placeOnTile(MainCar, value)
+        tiles.placeOnTile(PlayerWinGame, value)
     }
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
@@ -454,35 +428,40 @@ function SetCopCar () {
         tiles.placeOnTile(CopCar, value)
     }
 }
+function SpawnMainCar () {
+    for (let value of tiles.getTilesByType(assets.tile`myTile27`)) {
+        MainCar = sprites.create(img`
+            . . . . . . e e c c e e . . . . 
+            . . . . . e 2 2 2 2 2 2 e . . . 
+            . . . . 2 c 2 2 2 2 2 2 c 2 . . 
+            . . . e 2 c 4 2 2 2 2 2 c 2 e . 
+            . . . f 2 2 4 2 2 2 2 2 c 2 f . 
+            . . . f 2 2 4 2 2 2 2 2 2 2 f . 
+            . . . f 2 2 4 2 2 2 2 2 2 2 f . 
+            . . . f 2 c 2 4 4 2 2 2 c 2 f . 
+            . . . e 2 c e c c c c e c 2 e . 
+            . . . e 2 e c b b b b c e 2 e . 
+            . . . e 2 e b b b b b b e 2 e . 
+            . . . e e e e e e e e e e e e . 
+            . . . f e d e e e e e e d e f . 
+            . . . f e 2 d e e e e d 2 e f . 
+            . . . f f e e e e e e e e f f . 
+            . . . . f f . . . . . . f f . . 
+            `, SpriteKind.Player)
+        tiles.placeOnTile(MainCar, value)
+        scene.cameraFollowSprite(MainCar)
+        tiles.setTileAt(value, assets.tile`myTile27`)
+        controller.moveSprite(MainCar)
+    }
+}
+let PlayerWinGame: Sprite = null
 let CopCar2: Sprite = null
 let Coins: Sprite = null
 let CopCar: Sprite = null
 let MainCar: Sprite = null
 tiles.setCurrentTilemap(tilemap`level2`)
-let OverlapDestroyPullOutCar = sprites.create(img`
-    666................................666
-    666................................666
-    666................................666
-    666................................666
-    666................................666
-    666................................666
-    666................................666
-    666................................666
-    666................................666
-    666................................666
-    666................................666
-    666................................666
-    666................................666
-    666................................666
-    66666666666666666666666666666666666666
-    66666666666666666666666666666666666666
-    66666666666666666666666666666666666666
-    66666666666666666666666666666666666666
-    `, SpriteKind.OverlapChangeLevel)
-OverlapDestroyPullOutCar.x = 112
-OverlapDestroyPullOutCar.y = 10
 info.setScore(1)
-SetChaseCar()
+SpawnMainCar()
 SetCopCar()
 CollectCoins1()
 game.onUpdate(function () {
