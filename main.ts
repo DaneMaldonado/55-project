@@ -172,6 +172,7 @@ function PullOutCopCar () {
             `, SpriteKind.Enemy)
         tiles.placeOnTile(CopCar, value)
         CopCar.follow(MainCar, 50)
+        tiles.setTileAt(value, sprites.vehicle.roadVertical)
     }
 }
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -298,6 +299,7 @@ function SetCopCar2 () {
         tiles.placeOnTile(CopCar2, value)
         CopCar2.setVelocity(0, 40)
         CopCar2.setBounceOnWall(true)
+        tiles.setTileAt(value, sprites.vehicle.roadVertical)
     }
 }
 function GameWin () {
@@ -426,6 +428,7 @@ function SetCopCar () {
             . . . . f f . . . . . . f f . . 
             `, SpriteKind.Enemy)
         tiles.placeOnTile(CopCar, value)
+        tiles.setTileAt(value, sprites.vehicle.roadVertical)
     }
 }
 function SpawnMainCar () {
@@ -450,7 +453,7 @@ function SpawnMainCar () {
             `, SpriteKind.Player)
         tiles.placeOnTile(MainCar, value)
         scene.cameraFollowSprite(MainCar)
-        tiles.setTileAt(value, assets.tile`myTile27`)
+        tiles.setTileAt(value, sprites.vehicle.roadVertical)
         controller.moveSprite(MainCar)
     }
 }
