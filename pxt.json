@@ -2,7 +2,8 @@
     "name": "5.5 Project - Copy",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "animation": "*"
     },
     "files": [
         "main.blocks",

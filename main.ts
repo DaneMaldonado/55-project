@@ -61,12 +61,6 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile22`, function (sprite, 
     info.changeScoreBy(1)
     game.splash("Level 3")
 })
-scene.onOverlapTile(SpriteKind.Player, assets.tile`EnemyOverlap1`, function (sprite, location) {
-    for (let value of tiles.getTilesByType(assets.tile`EnemyOverlap1`)) {
-        tiles.setTileAt(value, assets.tile`myTile13`)
-    }
-    PullOutCopCar()
-})
 scene.onOverlapTile(SpriteKind.Player, sprites.builtin.brick, function (sprite, location) {
     game.gameOver(false)
 })
@@ -109,6 +103,11 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
         )
     }
 })
+function PurpleLocatons () {
+    for (let value of tiles.getTilesByType(assets.tile`myTile16`)) {
+        tiles.setTileAt(value, sprites.vehicle.roadVertical)
+    }
+}
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile21`, function (sprite, location) {
     game.gameOver(false)
 })
@@ -117,6 +116,11 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile16`, function (sprite, 
     tiles.setTileAt(tiles.getTileLocation(2, 13), assets.tile`myTile15`)
     tiles.setTileAt(tiles.getTileLocation(1, 12), assets.tile`myTile15`)
 })
+function LightBlueLocations () {
+    for (let value of tiles.getTilesByType(assets.tile`CopCarPullOut`)) {
+        tiles.setTileAt(value, sprites.vehicle.roadHorizontal)
+    }
+}
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     if (info.score() == 3) {
         animation.runImageAnimation(
@@ -150,8 +154,13 @@ scene.onOverlapTile(SpriteKind.Enemy, sprites.builtin.brick, function (sprite, l
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
 	
 })
+function DarkBlueLocations2 () {
+    for (let value of tiles.getTilesByType(assets.tile`myTile3`)) {
+        tiles.setTileAt(value, sprites.vehicle.roadHorizontal)
+    }
+}
 function PullOutCopCar () {
-    for (let value of tiles.getTilesByType(assets.tile`CopCarPullOut`)) {
+    for (let value of tiles.getTilesByType(assets.tile`myTile31`)) {
         CopCar = sprites.create(img`
             . . . . . . 8 8 c c 8 8 . . . . 
             . . . . . 8 6 6 6 6 6 6 8 . . . 
@@ -456,6 +465,9 @@ function SpawnMainCar () {
         controller.moveSprite(MainCar)
     }
 }
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile30`, function (sprite, location) {
+    PullOutCopCar()
+})
 let PlayerWinGame: Sprite = null
 let CopCar2: Sprite = null
 let Coins: Sprite = null
@@ -466,6 +478,9 @@ info.setScore(1)
 SpawnMainCar()
 SetCopCar()
 CollectCoins1()
+PurpleLocatons()
+LightBlueLocations()
+DarkBlueLocations2()
 game.onUpdate(function () {
     if (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenInnerNorthWest) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenInnerSouthEast) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenInnerSouthWest) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenInnerNorthEast) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterWest0) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterEast1) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterSouth0) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterNorth0) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterSouthEast) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterNorthEast) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterSouthWest) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterNorth1) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterNorthWest) || tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterSouth2)))))))))))))) {
         game.gameOver(false)

@@ -72,6 +72,10 @@ namespace myTiles {
     export const tile31 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile32 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile36 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile37 = image.ofBuffer(hex``);
 
     helpers._registerFactory("tilemap", function(name: string) {
         switch(helpers.stringTrim(name)) {
@@ -215,7 +219,7 @@ namespace myTiles {
 ............
 `, [myTiles.transparency16,sprites.vehicle.roadVertical,sprites.vehicle.roadHorizontal,sprites.dungeon.darkGroundNorthWest1,sprites.dungeon.darkGroundEast,sprites.dungeon.darkGroundNorthEast0,sprites.dungeon.darkGroundSouthEast0,sprites.dungeon.darkGroundNorthWest0,sprites.dungeon.darkGroundSouthWest0,sprites.dungeon.darkGroundNorth,sprites.dungeon.darkGroundWest,sprites.dungeon.darkGroundSouth,sprites.dungeon.greenInnerNorthWest,sprites.dungeon.greenInnerSouthEast,sprites.dungeon.greenInnerSouthWest,sprites.dungeon.greenInnerNorthEast,sprites.dungeon.greenOuterWest0,sprites.dungeon.greenOuterEast1,sprites.dungeon.greenOuterSouth0,sprites.dungeon.greenOuterNorth0,sprites.dungeon.greenOuterSouth2,sprites.dungeon.greenOuterSouthEast,sprites.dungeon.greenOuterNorthEast,sprites.dungeon.greenOuterEast0,sprites.dungeon.greenOuterSouthWest,sprites.dungeon.greenOuterNorth1,sprites.dungeon.greenOuterNorthWest,sprites.dungeon.greenOuterWest1,myTiles.tile30,myTiles.tile27,sprites.dungeon.floorDarkDiamond,myTiles.tile32,myTiles.tile33], TileScale.Sixteen);
             case "level2":
-            case "level2":return tiles.createTilemap(hex`0a0026000a030303030c16160a0c0513040413060101050605040413040617170506050413040406010105060513040413060101050605090909090b01010506110208020202020205061102020202020202050611020202020208020506110101010a030303040611170108050704070406110101010d0909090406111502021414020205061102150214140202050611150215141402020506050303030c1710080507050404120610101005060512040406101010050605040412060810100506051204040610101007060504041206011701050605120404060101010506050404120601080105060d0909090b0101010507020202020202020205060e020202020202020506020202020202020205060a0c0f0f0f0a030304060506080101050704040605060101010504040706070601010105070404060506170108050404070605060101010507040406050701010105040407060506011001050704040605060118010504040706070601010105070404060d0b0119010d0909090b`, img`
+            case "level2":return tiles.createTilemap(hex`0a0026000a030303030c14140a0c0511040411060101050605040411040615150506050411040406010105060511040411060101050605090909090b010105060f0208020202020205060f0202020202020205060f0202020202080205060f0101010a03030304060f1501080507040704060f0101010d09090904060f1302021212020205060f0213021212020205060f130213121202020506050303030c150e08050705040410060e0e0e050605100404060e0e0e05060504041006080e0e050605100404060e0e0e07060504041006011501050605100404060101010506050404100601080105060d0909090b01010105070202020202020202050619020202020202020506020202020202020205060a0c1818180a030304060506080101050704040605060101010504040706070601010105070404060506150108050404070605060101010507040406050701010105040407060506010e01050704040605060116010504040706070601010105070404060d0b0117010d0909090b`, img`
 ..........
 ..........
 ..........
@@ -254,7 +258,7 @@ namespace myTiles {
 ..........
 ..........
 ..........
-`, [myTiles.transparency16,sprites.vehicle.roadVertical,sprites.vehicle.roadHorizontal,sprites.skillmap.islandTile1,sprites.skillmap.islandTile4,sprites.skillmap.islandTile3,sprites.skillmap.islandTile5,myTiles.tile1,sprites.builtin.brick,myTiles.tile3,myTiles.tile4,myTiles.tile6,myTiles.tile8,myTiles.tile9,myTiles.tile13,myTiles.tile14,myTiles.tile15,myTiles.tile16,myTiles.tile17,myTiles.tile20,myTiles.tile22,myTiles.tile24,myTiles.tile25,myTiles.tile31,myTiles.tile33,myTiles.tile5], TileScale.Sixteen);
+`, [myTiles.transparency16,sprites.vehicle.roadVertical,sprites.vehicle.roadHorizontal,sprites.skillmap.islandTile1,sprites.skillmap.islandTile4,sprites.skillmap.islandTile3,sprites.skillmap.islandTile5,myTiles.tile1,sprites.builtin.brick,myTiles.tile3,myTiles.tile4,myTiles.tile6,myTiles.tile8,myTiles.tile9,myTiles.tile15,myTiles.tile16,myTiles.tile17,myTiles.tile20,myTiles.tile22,myTiles.tile24,myTiles.tile25,myTiles.tile31,myTiles.tile33,myTiles.tile5,myTiles.tile36,myTiles.tile37], TileScale.Sixteen);
         }
         return null;
     })
@@ -332,6 +336,10 @@ namespace myTiles {
             case "tile31":return tile31;
             case "myTile26":
             case "tile32":return tile32;
+            case "myTile30":
+            case "tile36":return tile36;
+            case "myTile31":
+            case "tile37":return tile37;
         }
         return null;
     })
