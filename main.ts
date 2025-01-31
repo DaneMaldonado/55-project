@@ -407,7 +407,7 @@ function CollectCoins2 () {
     }
 }
 function SetCopCar () {
-    for (let value of tiles.getTilesByType(assets.tile`SpawnCopCar`)) {
+    for (let value of tiles.getTilesByType(assets.tile`myTile3`)) {
         CopCar = sprites.create(img`
             . . . . . . 8 8 c c 8 8 . . . . 
             . . . . . 8 6 6 6 6 6 6 8 . . . 
