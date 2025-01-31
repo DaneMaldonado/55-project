@@ -28,15 +28,13 @@ function SetChaseCar () {
     }
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile19`, function (sprite, location) {
-    sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
     tiles.setCurrentTilemap(tilemap`level4`)
-    scene.cameraFollowSprite(MainCar)
-    info.changeScoreBy(1)
-    MainCar.setPosition(100, 540)
-    game.splash("Level 2")
+    sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Player)
+    SetChaseCar()
     SetCopCar2()
-    CollectCoins1()
-    pause(1000)
+    info.changeScoreBy(1)
+    game.splash("Level 2")
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -84,10 +82,10 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile22`, function (sprite, 
     tiles.setCurrentTilemap(tilemap`level1`)
     scene.cameraFollowSprite(MainCar)
     info.changeScoreBy(1)
-    MainCar.setPosition(70, 540)
+    MainCar.setPosition(70, 600)
     game.splash("Level 3")
-    CollectCoins1()
     pause(1000)
+    CollectCoins2()
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`EnemyOverlap1`, function (sprite, location) {
     for (let value of tiles.getTilesByType(assets.tile`EnemyOverlap1`)) {
@@ -138,7 +136,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile21`, function (sprite, location) {
-    sprites.destroy(sprite)
+    game.gameOver(false)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile16`, function (sprite, location) {
     tiles.setTileAt(tiles.getTileLocation(3, 14), assets.tile`myTile15`)
@@ -354,6 +352,85 @@ function GameWin () {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     game.gameOver(true)
 })
+function CollectCoins2 () {
+    for (let value of tiles.getTilesByType(assets.tile`myTile26`)) {
+        Coins = sprites.create(img`
+            . . b b b b . . 
+            . b 5 5 5 5 b . 
+            b 5 d 3 3 d 5 b 
+            b 5 3 5 5 1 5 b 
+            c 5 3 5 5 1 d c 
+            c d d 1 1 d d c 
+            . f d d d d f . 
+            . . f f f f . . 
+            `, SpriteKind.CoinsCollect)
+        tiles.placeOnTile(Coins, value)
+        Coins.scale = 1.25
+        animation.runImageAnimation(
+        Coins,
+        [img`
+            . . b b b b . . 
+            . b 5 5 5 5 b . 
+            b 5 d 3 3 d 5 b 
+            b 5 3 5 5 1 5 b 
+            c 5 3 5 5 1 d c 
+            c d d 1 1 d d c 
+            . f d d d d f . 
+            . . f f f f . . 
+            `,img`
+            . . b b b . . . 
+            . b 5 5 5 b . . 
+            b 5 d 3 d 5 b . 
+            b 5 3 5 1 5 b . 
+            c 5 3 5 1 d c . 
+            c 5 d 1 d d c . 
+            . f d d d f . . 
+            . . f f f . . . 
+            `,img`
+            . . . b b . . . 
+            . . b 5 5 b . . 
+            . b 5 d 1 5 b . 
+            . b 5 3 1 5 b . 
+            . c 5 3 1 d c . 
+            . c 5 1 d d c . 
+            . . f d d f . . 
+            . . . f f . . . 
+            `,img`
+            . . . b b . . . 
+            . . b 5 5 b . . 
+            . . b 1 1 b . . 
+            . . b 5 5 b . . 
+            . . b d d b . . 
+            . . c d d c . . 
+            . . c 3 3 c . . 
+            . . . f f . . . 
+            `,img`
+            . . . b b . . . 
+            . . b 5 5 b . . 
+            . b 5 1 d 5 b . 
+            . b 5 1 3 5 b . 
+            . c d 1 3 5 c . 
+            . c d d 1 5 c . 
+            . . f d d f . . 
+            . . . f f . . . 
+            `,img`
+            . . . b b b . . 
+            . . b 5 5 5 b . 
+            . b 5 d 3 d 5 b 
+            . b 5 1 5 3 5 b 
+            . c d 1 5 3 5 c 
+            . c d d 1 d 5 c 
+            . . f d d d f . 
+            . . . f f f . . 
+            `],
+        500,
+        true
+        )
+    }
+    if (true) {
+    	
+    }
+}
 function SetCopCar () {
     for (let value of tiles.getTilesByType(assets.tile`SpawnCopCar`)) {
         CopCar = sprites.create(img`

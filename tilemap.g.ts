@@ -64,6 +64,8 @@ namespace myTiles {
     export const tile30 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile31 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile32 = image.ofBuffer(hex``);
 
     helpers._registerFactory("tilemap", function(name: string) {
         switch(helpers.stringTrim(name)) {
@@ -246,7 +248,7 @@ namespace myTiles {
 ............
 ............
 ............
-`, [myTiles.transparency16,sprites.vehicle.roadVertical,sprites.vehicle.roadHorizontal,sprites.dungeon.darkGroundNorthWest1,sprites.dungeon.darkGroundEast,sprites.dungeon.darkGroundNorthEast0,sprites.dungeon.darkGroundSouthEast0,sprites.dungeon.darkGroundNorthWest0,sprites.dungeon.darkGroundSouthWest0,sprites.dungeon.darkGroundNorth,sprites.dungeon.darkGroundWest,sprites.dungeon.darkGroundSouth,sprites.dungeon.greenInnerNorthWest,sprites.dungeon.greenInnerSouthEast,sprites.dungeon.greenInnerSouthWest,sprites.dungeon.greenInnerNorthEast,sprites.dungeon.greenOuterWest0,sprites.dungeon.greenOuterEast1,sprites.dungeon.greenOuterSouth0,sprites.dungeon.greenOuterNorth0,sprites.dungeon.greenOuterSouth2,sprites.dungeon.greenOuterSouthEast,sprites.dungeon.greenOuterNorthEast,sprites.dungeon.greenOuterEast0,sprites.dungeon.greenOuterSouthWest,sprites.dungeon.greenOuterNorth1,sprites.dungeon.greenOuterNorthWest,sprites.dungeon.greenOuterWest1,myTiles.tile30,myTiles.tile27,sprites.dungeon.floorDarkDiamond,myTiles.tile31], TileScale.Sixteen);
+`, [myTiles.transparency16,sprites.vehicle.roadVertical,sprites.vehicle.roadHorizontal,sprites.dungeon.darkGroundNorthWest1,sprites.dungeon.darkGroundEast,sprites.dungeon.darkGroundNorthEast0,sprites.dungeon.darkGroundSouthEast0,sprites.dungeon.darkGroundNorthWest0,sprites.dungeon.darkGroundSouthWest0,sprites.dungeon.darkGroundNorth,sprites.dungeon.darkGroundWest,sprites.dungeon.darkGroundSouth,sprites.dungeon.greenInnerNorthWest,sprites.dungeon.greenInnerSouthEast,sprites.dungeon.greenInnerSouthWest,sprites.dungeon.greenInnerNorthEast,sprites.dungeon.greenOuterWest0,sprites.dungeon.greenOuterEast1,sprites.dungeon.greenOuterSouth0,sprites.dungeon.greenOuterNorth0,sprites.dungeon.greenOuterSouth2,sprites.dungeon.greenOuterSouthEast,sprites.dungeon.greenOuterNorthEast,sprites.dungeon.greenOuterEast0,sprites.dungeon.greenOuterSouthWest,sprites.dungeon.greenOuterNorth1,sprites.dungeon.greenOuterNorthWest,sprites.dungeon.greenOuterWest1,myTiles.tile30,myTiles.tile27,sprites.dungeon.floorDarkDiamond,myTiles.tile32], TileScale.Sixteen);
         }
         return null;
     })
@@ -316,6 +318,8 @@ namespace myTiles {
             case "tile30":return tile30;
             case "myTile25":
             case "tile31":return tile31;
+            case "myTile26":
+            case "tile32":return tile32;
         }
         return null;
     })
