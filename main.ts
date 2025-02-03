@@ -3,12 +3,13 @@ namespace SpriteKind {
     export const CoinsCollect = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile19`, function (sprite, location) {
+    sprites.destroyAllSpritesOfKind(SpriteKind.Food)
     sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
     sprites.destroyAllSpritesOfKind(SpriteKind.Player)
     tiles.setCurrentTilemap(tilemap`level4`)
     SpawnMainCar()
     SetCopCar2()
-    info.changeScoreBy(1)
+    CollectCoins2()
     game.splash("Level 2")
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -54,9 +55,11 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile15`, function (sprite, 
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile22`, function (sprite, location) {
     sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
     sprites.destroyAllSpritesOfKind(SpriteKind.Player)
     tiles.setCurrentTilemap(tilemap`level1`)
     SpawnMainCar()
+    CollectCoins2()
     CollectCoins2()
     GameWin()
     info.changeScoreBy(1)
@@ -106,7 +109,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 function PurpleLocatons () {
     for (let value of tiles.getTilesByType(assets.tile`myTile16`)) {
-        tiles.setTileAt(value, sprites.vehicle.roadVertical)
+        tiles.setTileAt(value, assets.tile`myTile16`)
     }
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile21`, function (sprite, location) {
@@ -182,7 +185,10 @@ function PullOutCopCar () {
             `, SpriteKind.Enemy)
         tiles.placeOnTile(CopCar, value)
         CopCar.follow(MainCar, 50)
-        tiles.setTileAt(value, sprites.vehicle.roadVertical)
+        tiles.setTileAt(value, sprites.vehicle.roadHorizontal)
+        for (let value of tiles.getTilesByType(assets.tile`myTile18`)) {
+            tiles.setTileAt(value, sprites.vehicle.roadHorizontal)
+        }
     }
 }
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -334,31 +340,13 @@ function GameWin () {
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.Food)
         tiles.placeOnTile(PlayerWinGame, value)
-        tiles.setTileAt(value, img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . 6 6 6 6 . . . . . . 
-            . . . . 6 6 6 5 5 6 6 6 . . . . 
-            . . . 7 7 7 7 6 6 6 6 6 6 . . . 
-            . . 6 7 7 7 7 8 8 8 1 1 6 6 . . 
-            . . 7 7 7 7 7 8 8 8 1 1 5 6 . . 
-            . 6 7 7 7 7 8 8 8 8 8 5 5 6 6 . 
-            . 6 7 7 7 8 8 8 6 6 6 6 5 6 6 . 
-            . 6 6 7 7 8 8 6 6 6 6 6 6 6 6 . 
-            . 6 8 7 7 8 8 6 6 6 6 6 6 6 6 . 
-            . . 6 8 7 7 8 6 6 6 6 6 8 6 . . 
-            . . 6 8 8 7 8 8 6 6 6 8 6 6 . . 
-            . . . 6 8 8 8 8 8 8 8 8 6 . . . 
-            . . . . 6 6 8 8 8 8 6 6 . . . . 
-            . . . . . . 6 6 6 6 . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `)
     }
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     game.gameOver(true)
 })
 function CollectCoins2 () {
-    for (let value of tiles.getTilesByType(assets.tile`myTile26`)) {
+    for (let value of tiles.getTilesByType(assets.tile`myTile25`)) {
         tiles.setTileAt(value, assets.tile`myTile13`)
         Coins = sprites.create(img`
             . . b b b b . . 
@@ -495,8 +483,8 @@ let MainCar: Sprite = null
 tiles.setCurrentTilemap(tilemap`level2`)
 info.setScore(1)
 SpawnMainCar()
-SetCopCar()
 CollectCoins1()
+SetCopCar()
 PurpleLocatons()
 LightBlueLocations()
 DarkBlueLocations2()
