@@ -489,7 +489,7 @@ function SetCopCar () {
             . . . . . . . . . . . . . . . . 
             `],
         500,
-        characterAnimations.rule(Predicate.MovingRight)
+        characterAnimations.rule(Predicate.MovingRight, Predicate.MovingDown, Predicate.MovingUp)
         )
         characterAnimations.loopFrames(
         CopCar,
@@ -512,7 +512,7 @@ function SetCopCar () {
             . . . . . 8 6 6 6 6 6 6 8 . . . 
             `],
         500,
-        characterAnimations.rule(Predicate.MovingDown)
+        characterAnimations.rule(Predicate.MovingDown, Predicate.MovingDown, Predicate.MovingUp)
         )
         characterAnimations.loopFrames(
         CopCar,
@@ -535,7 +535,7 @@ function SetCopCar () {
             . . . . . . . . . . . . . . . . 
             `],
         500,
-        characterAnimations.rule(Predicate.MovingLeft)
+        characterAnimations.rule(Predicate.MovingLeft, Predicate.MovingDown, Predicate.MovingUp)
         )
     }
 }
