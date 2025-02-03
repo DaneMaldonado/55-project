@@ -58,6 +58,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile22`, function (sprite, 
     tiles.setCurrentTilemap(tilemap`level1`)
     SpawnMainCar()
     CollectCoins2()
+    GameWin()
     info.changeScoreBy(1)
     game.splash("Level 3")
 })
@@ -333,6 +334,24 @@ function GameWin () {
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.Food)
         tiles.placeOnTile(PlayerWinGame, value)
+        tiles.setTileAt(value, img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . 6 6 6 6 . . . . . . 
+            . . . . 6 6 6 5 5 6 6 6 . . . . 
+            . . . 7 7 7 7 6 6 6 6 6 6 . . . 
+            . . 6 7 7 7 7 8 8 8 1 1 6 6 . . 
+            . . 7 7 7 7 7 8 8 8 1 1 5 6 . . 
+            . 6 7 7 7 7 8 8 8 8 8 5 5 6 6 . 
+            . 6 7 7 7 8 8 8 6 6 6 6 5 6 6 . 
+            . 6 6 7 7 8 8 6 6 6 6 6 6 6 6 . 
+            . 6 8 7 7 8 8 6 6 6 6 6 6 6 6 . 
+            . . 6 8 7 7 8 6 6 6 6 6 8 6 . . 
+            . . 6 8 8 7 8 8 6 6 6 8 6 6 . . 
+            . . . 6 8 8 8 8 8 8 8 8 6 . . . 
+            . . . . 6 6 8 8 8 8 6 6 . . . . 
+            . . . . . . 6 6 6 6 . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `)
     }
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {

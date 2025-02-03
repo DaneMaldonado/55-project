@@ -67,8 +67,6 @@ namespace myTiles {
     //% fixedInstance jres blockIdentity=images._tile
     export const tile24 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
-    export const tile30 = image.ofBuffer(hex``);
-    //% fixedInstance jres blockIdentity=images._tile
     export const tile31 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile32 = image.ofBuffer(hex``);
@@ -76,6 +74,8 @@ namespace myTiles {
     export const tile36 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile37 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile30 = image.ofBuffer(hex``);
 
     helpers._registerFactory("tilemap", function(name: string) {
         switch(helpers.stringTrim(name)) {
@@ -258,7 +258,7 @@ namespace myTiles {
 ..........
 ..........
 ..........
-`, [myTiles.transparency16,sprites.vehicle.roadVertical,sprites.vehicle.roadHorizontal,sprites.skillmap.islandTile1,sprites.skillmap.islandTile4,sprites.skillmap.islandTile3,sprites.skillmap.islandTile5,myTiles.tile1,sprites.builtin.brick,myTiles.tile3,myTiles.tile4,myTiles.tile6,myTiles.tile8,myTiles.tile9,myTiles.tile15,myTiles.tile16,myTiles.tile17,myTiles.tile20,myTiles.tile22,myTiles.tile24,myTiles.tile25,myTiles.tile31,myTiles.tile33,myTiles.tile5,myTiles.tile36,myTiles.tile37], TileScale.Sixteen);
+`, [myTiles.transparency16,sprites.vehicle.roadVertical,sprites.vehicle.roadHorizontal,sprites.skillmap.islandTile1,sprites.skillmap.islandTile4,sprites.skillmap.islandTile3,sprites.skillmap.islandTile5,myTiles.tile1,sprites.builtin.brick,myTiles.tile3,myTiles.tile4,myTiles.tile6,myTiles.tile8,myTiles.tile9,myTiles.tile15,myTiles.tile16,myTiles.tile17,myTiles.tile20,myTiles.tile22,myTiles.tile24,myTiles.tile25,myTiles.tile31,myTiles.tile33,myTiles.tile5,myTiles.tile36,myTiles.tile37,myTiles.tile30], TileScale.Sixteen);
         }
         return null;
     })
@@ -330,8 +330,6 @@ namespace myTiles {
             case "tile22":return tile22;
             case "myTile18":
             case "tile24":return tile24;
-            case "myTile24":
-            case "tile30":return tile30;
             case "myTile25":
             case "tile31":return tile31;
             case "myTile26":
@@ -340,6 +338,8 @@ namespace myTiles {
             case "tile36":return tile36;
             case "myTile31":
             case "tile37":return tile37;
+            case "myTile24":
+            case "tile30":return tile30;
         }
         return null;
     })
