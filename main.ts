@@ -79,7 +79,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile22`, function (sprite, 
     sprites.destroyAllSpritesOfKind(SpriteKind.Player)
     tiles.setCurrentTilemap(tilemap`level1`)
     SpawnMainCar()
-    CollectCoins2()
+    SetCopCar()
     CollectCoins2()
     GameWin()
     info.changeScoreBy(1)
@@ -215,7 +215,7 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     )
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
-	
+    game.gameOver(false)
 })
 function DarkBlueLocations2 () {
     for (let value of tiles.getTilesByType(assets.tile`myTile3`)) {
@@ -266,7 +266,7 @@ function PullOutCopCar () {
             . . . . f f . . . . . . f f . . 
             `],
         500,
-        characterAnimations.rule(Predicate.MovingUp, Predicate.MovingLeft, Predicate.MovingRight)
+        characterAnimations.rule(Predicate.MovingUp)
         )
         characterAnimations.loopFrames(
         CopCar,
@@ -289,7 +289,7 @@ function PullOutCopCar () {
             . . . . . . . . . . . . . . . . 
             `],
         500,
-        characterAnimations.rule(Predicate.MovingRight, Predicate.MovingDown, Predicate.MovingUp)
+        characterAnimations.rule(Predicate.MovingRight)
         )
         characterAnimations.loopFrames(
         CopCar,
@@ -312,7 +312,7 @@ function PullOutCopCar () {
             . . . . . 8 6 6 6 6 6 6 8 . . . 
             `],
         500,
-        characterAnimations.rule(Predicate.MovingDown, Predicate.MovingLeft, Predicate.MovingRight)
+        characterAnimations.rule(Predicate.MovingDown)
         )
         characterAnimations.loopFrames(
         CopCar,
@@ -335,7 +335,7 @@ function PullOutCopCar () {
             . . . . . . . . . . . . . . . . 
             `],
         500,
-        characterAnimations.rule(Predicate.MovingLeft, Predicate.MovingDown, Predicate.MovingUp)
+        characterAnimations.rule(Predicate.MovingLeft)
         )
         for (let value of tiles.getTilesByType(assets.tile`myTile18`)) {
             tiles.setTileAt(value, sprites.vehicle.roadHorizontal)
@@ -639,7 +639,7 @@ function SetCopCar () {
             . . . . f f . . . . . . f f . . 
             `],
         500,
-        characterAnimations.rule(Predicate.MovingUp, Predicate.MovingLeft, Predicate.MovingRight)
+        characterAnimations.rule(Predicate.MovingUp)
         )
         characterAnimations.loopFrames(
         CopCar,
@@ -662,7 +662,7 @@ function SetCopCar () {
             . . . . . . . . . . . . . . . . 
             `],
         500,
-        characterAnimations.rule(Predicate.MovingRight, Predicate.MovingDown, Predicate.MovingUp)
+        characterAnimations.rule(Predicate.MovingRight)
         )
         characterAnimations.loopFrames(
         CopCar,
@@ -685,7 +685,7 @@ function SetCopCar () {
             . . . . . 8 6 6 6 6 6 6 8 . . . 
             `],
         500,
-        characterAnimations.rule(Predicate.MovingDown, Predicate.MovingLeft, Predicate.MovingRight)
+        characterAnimations.rule(Predicate.MovingDown)
         )
         characterAnimations.loopFrames(
         CopCar,
@@ -708,7 +708,7 @@ function SetCopCar () {
             . . . . . . . . . . . . . . . . 
             `],
         500,
-        characterAnimations.rule(Predicate.MovingLeft, Predicate.MovingDown, Predicate.MovingUp)
+        characterAnimations.rule(Predicate.MovingLeft)
         )
     }
 }
@@ -746,11 +746,12 @@ let CopCar2: Sprite = null
 let Coins: Sprite = null
 let CopCar: Sprite = null
 let MainCar: Sprite = null
+let GameMenu = game.askForNumber("Are you ready to play? Select any number.", 1)
 tiles.setCurrentTilemap(tilemap`level2`)
 info.setScore(1)
 SpawnMainCar()
-CollectCoins1()
 SetCopCar()
+CollectCoins2()
 PurpleLocatons()
 LightBlueLocations()
 DarkBlueLocations2()
