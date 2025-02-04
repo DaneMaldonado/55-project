@@ -9,8 +9,8 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile19`, function (sprite, 
     tiles.setCurrentTilemap(tilemap`level4`)
     tiles.placeOnTile(MainCar, tiles.getTileLocation(6, 34))
     SpawnMainCar()
-    SetCopCar2()
-    CollectCoins2()
+    VelocityCopCars()
+    CollectCoins()
     game.splash("Level 2")
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -70,8 +70,85 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorDarkDiamond, functio
 controller.anyButton.onEvent(ControllerButtonEvent.Pressed, function () {
     CopCar.follow(MainCar, 85)
 })
+function CollectCoins () {
+    for (let value of tiles.getTilesByType(assets.tile`myTile25`)) {
+        tiles.setTileAt(value, assets.tile`myTile13`)
+        Coins = sprites.create(img`
+            . . b b b b . . 
+            . b 5 5 5 5 b . 
+            b 5 d 3 3 d 5 b 
+            b 5 3 5 5 1 5 b 
+            c 5 3 5 5 1 d c 
+            c d d 1 1 d d c 
+            . f d d d d f . 
+            . . f f f f . . 
+            `, SpriteKind.CoinsCollect)
+        tiles.placeOnTile(Coins, value)
+        Coins.scale = 1.25
+        animation.runImageAnimation(
+        Coins,
+        [img`
+            . . b b b b . . 
+            . b 5 5 5 5 b . 
+            b 5 d 3 3 d 5 b 
+            b 5 3 5 5 1 5 b 
+            c 5 3 5 5 1 d c 
+            c d d 1 1 d d c 
+            . f d d d d f . 
+            . . f f f f . . 
+            `,img`
+            . . b b b . . . 
+            . b 5 5 5 b . . 
+            b 5 d 3 d 5 b . 
+            b 5 3 5 1 5 b . 
+            c 5 3 5 1 d c . 
+            c 5 d 1 d d c . 
+            . f d d d f . . 
+            . . f f f . . . 
+            `,img`
+            . . . b b . . . 
+            . . b 5 5 b . . 
+            . b 5 d 1 5 b . 
+            . b 5 3 1 5 b . 
+            . c 5 3 1 d c . 
+            . c 5 1 d d c . 
+            . . f d d f . . 
+            . . . f f . . . 
+            `,img`
+            . . . b b . . . 
+            . . b 5 5 b . . 
+            . . b 1 1 b . . 
+            . . b 5 5 b . . 
+            . . b d d b . . 
+            . . c d d c . . 
+            . . c 3 3 c . . 
+            . . . f f . . . 
+            `,img`
+            . . . b b . . . 
+            . . b 5 5 b . . 
+            . b 5 1 d 5 b . 
+            . b 5 1 3 5 b . 
+            . c d 1 3 5 c . 
+            . c d d 1 5 c . 
+            . . f d d f . . 
+            . . . f f . . . 
+            `,img`
+            . . . b b b . . 
+            . . b 5 5 5 b . 
+            . b 5 d 3 d 5 b 
+            . b 5 1 5 3 5 b 
+            . c d 1 5 3 5 c 
+            . c d d 1 d 5 c 
+            . . f d d d f . 
+            . . . f f f . . 
+            `],
+        500,
+        true
+        )
+    }
+}
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile15`, function (sprite, location) {
-    controller.moveSprite(MainCar, 50, 50)
+    controller.moveSprite(MainCar, 65, 50)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile22`, function (sprite, location) {
     sprites.destroyAllSpritesOfKind(SpriteKind.Food)
@@ -80,7 +157,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile22`, function (sprite, 
     tiles.setCurrentTilemap(tilemap`level1`)
     SpawnMainCar()
     SetCopCar()
-    CollectCoins2()
+    CollectCoins()
     GameWin()
     info.changeScoreBy(1)
     game.splash("Level 3")
@@ -148,9 +225,30 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     characterAnimations.rule(Predicate.MovingLeft, Predicate.MovingDown, Predicate.MovingUp)
     )
 })
-function PurpleLocatons () {
-    for (let value of tiles.getTilesByType(assets.tile`myTile16`)) {
-        tiles.setTileAt(value, assets.tile`myTile16`)
+function VelocityCopCars () {
+    for (let value of tiles.getTilesByType(assets.tile`myTile20`)) {
+        VelocityCopCars2 = sprites.create(img`
+            . . . . . . 8 8 c c 8 8 . . . . 
+            . . . . . 8 6 6 6 6 6 6 8 . . . 
+            . . . . 6 c 6 6 6 6 6 6 c 6 . . 
+            . . . 8 6 c 9 6 6 6 6 6 c 6 8 . 
+            . . . f 6 6 9 6 6 6 6 6 c 6 f . 
+            . . . f 6 6 9 6 6 6 6 6 6 6 f . 
+            . . . f 6 6 9 6 6 6 6 6 6 6 f . 
+            . . . f 6 c 6 9 9 6 6 6 c 6 f . 
+            . . . 8 6 c 8 c c c c 8 c 6 8 . 
+            . . . 8 6 8 c b b b b c 8 6 8 . 
+            . . . 8 6 8 b b b b b b 8 6 8 . 
+            . . . 8 8 8 8 8 8 8 8 8 8 8 8 . 
+            . . . f 8 d 8 8 8 8 8 8 d 8 f . 
+            . . . f 8 6 d 8 8 8 8 d 6 8 f . 
+            . . . f f 8 8 8 8 8 8 8 8 f f . 
+            . . . . f f . . . . . . f f . . 
+            `, SpriteKind.Enemy)
+        tiles.placeOnTile(VelocityCopCars2, value)
+        VelocityCopCars2.setVelocity(0, 40)
+        VelocityCopCars2.setBounceOnWall(true)
+        tiles.setTileAt(value, sprites.vehicle.roadVertical)
     }
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile21`, function (sprite, location) {
@@ -161,11 +259,6 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile16`, function (sprite, 
     tiles.setTileAt(tiles.getTileLocation(2, 13), assets.tile`myTile15`)
     tiles.setTileAt(tiles.getTileLocation(1, 12), assets.tile`myTile15`)
 })
-function LightBlueLocations () {
-    for (let value of tiles.getTilesByType(assets.tile`CopCarPullOut`)) {
-        tiles.setTileAt(value, sprites.vehicle.roadHorizontal)
-    }
-}
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     MainCar,
@@ -214,14 +307,20 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     characterAnimations.rule(Predicate.MovingRight, Predicate.MovingDown, Predicate.MovingUp)
     )
 })
-sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
-    game.gameOver(false)
-})
-function DarkBlueLocations2 () {
+function Locations () {
+    for (let value of tiles.getTilesByType(assets.tile`myTile16`)) {
+        tiles.setTileAt(value, assets.tile`myTile16`)
+    }
+    for (let value of tiles.getTilesByType(assets.tile`CopCarPullOut`)) {
+        tiles.setTileAt(value, sprites.vehicle.roadHorizontal)
+    }
     for (let value of tiles.getTilesByType(assets.tile`myTile3`)) {
         tiles.setTileAt(value, sprites.vehicle.roadHorizontal)
     }
 }
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
+    game.gameOver(false)
+})
 function PullOutCopCar () {
     for (let value of tiles.getTilesByType(assets.tile`myTile31`)) {
         CopCar = sprites.create(img`
@@ -390,109 +489,6 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     characterAnimations.rule(Predicate.MovingDown, Predicate.MovingLeft, Predicate.MovingRight)
     )
 })
-function CollectCoins1 () {
-    for (let value of tiles.getTilesByType(assets.tile`myTile25`)) {
-        Coins = sprites.create(img`
-            . . b b b b . . 
-            . b 5 5 5 5 b . 
-            b 5 d 3 3 d 5 b 
-            b 5 3 5 5 1 5 b 
-            c 5 3 5 5 1 d c 
-            c d d 1 1 d d c 
-            . f d d d d f . 
-            . . f f f f . . 
-            `, SpriteKind.CoinsCollect)
-        tiles.placeOnTile(Coins, value)
-        Coins.scale = 1.25
-        animation.runImageAnimation(
-        Coins,
-        [img`
-            . . b b b b . . 
-            . b 5 5 5 5 b . 
-            b 5 d 3 3 d 5 b 
-            b 5 3 5 5 1 5 b 
-            c 5 3 5 5 1 d c 
-            c d d 1 1 d d c 
-            . f d d d d f . 
-            . . f f f f . . 
-            `,img`
-            . . b b b . . . 
-            . b 5 5 5 b . . 
-            b 5 d 3 d 5 b . 
-            b 5 3 5 1 5 b . 
-            c 5 3 5 1 d c . 
-            c 5 d 1 d d c . 
-            . f d d d f . . 
-            . . f f f . . . 
-            `,img`
-            . . . b b . . . 
-            . . b 5 5 b . . 
-            . b 5 d 1 5 b . 
-            . b 5 3 1 5 b . 
-            . c 5 3 1 d c . 
-            . c 5 1 d d c . 
-            . . f d d f . . 
-            . . . f f . . . 
-            `,img`
-            . . . b b . . . 
-            . . b 5 5 b . . 
-            . . b 1 1 b . . 
-            . . b 5 5 b . . 
-            . . b d d b . . 
-            . . c d d c . . 
-            . . c 3 3 c . . 
-            . . . f f . . . 
-            `,img`
-            . . . b b . . . 
-            . . b 5 5 b . . 
-            . b 5 1 d 5 b . 
-            . b 5 1 3 5 b . 
-            . c d 1 3 5 c . 
-            . c d d 1 5 c . 
-            . . f d d f . . 
-            . . . f f . . . 
-            `,img`
-            . . . b b b . . 
-            . . b 5 5 5 b . 
-            . b 5 d 3 d 5 b 
-            . b 5 1 5 3 5 b 
-            . c d 1 5 3 5 c 
-            . c d d 1 d 5 c 
-            . . f d d d f . 
-            . . . f f f . . 
-            `],
-        500,
-        true
-        )
-        tiles.setTileAt(value, sprites.vehicle.roadVertical)
-    }
-}
-function SetCopCar2 () {
-    for (let value of tiles.getTilesByType(assets.tile`myTile20`)) {
-        CopCar2 = sprites.create(img`
-            . . . . . . 8 8 c c 8 8 . . . . 
-            . . . . . 8 6 6 6 6 6 6 8 . . . 
-            . . . . 6 c 6 6 6 6 6 6 c 6 . . 
-            . . . 8 6 c 9 6 6 6 6 6 c 6 8 . 
-            . . . f 6 6 9 6 6 6 6 6 c 6 f . 
-            . . . f 6 6 9 6 6 6 6 6 6 6 f . 
-            . . . f 6 6 9 6 6 6 6 6 6 6 f . 
-            . . . f 6 c 6 9 9 6 6 6 c 6 f . 
-            . . . 8 6 c 8 c c c c 8 c 6 8 . 
-            . . . 8 6 8 c b b b b c 8 6 8 . 
-            . . . 8 6 8 b b b b b b 8 6 8 . 
-            . . . 8 8 8 8 8 8 8 8 8 8 8 8 . 
-            . . . f 8 d 8 8 8 8 8 8 d 8 f . 
-            . . . f 8 6 d 8 8 8 8 d 6 8 f . 
-            . . . f f 8 8 8 8 8 8 8 8 f f . 
-            . . . . f f . . . . . . f f . . 
-            `, SpriteKind.Enemy)
-        tiles.placeOnTile(CopCar2, value)
-        CopCar2.setVelocity(0, 40)
-        CopCar2.setBounceOnWall(true)
-        tiles.setTileAt(value, sprites.vehicle.roadVertical)
-    }
-}
 function GameWin () {
     for (let value of tiles.getTilesByType(assets.tile`myTile24`)) {
         PlayerWinGame = sprites.create(img`
@@ -519,83 +515,6 @@ function GameWin () {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     game.gameOver(true)
 })
-function CollectCoins2 () {
-    for (let value of tiles.getTilesByType(assets.tile`myTile25`)) {
-        tiles.setTileAt(value, assets.tile`myTile13`)
-        Coins = sprites.create(img`
-            . . b b b b . . 
-            . b 5 5 5 5 b . 
-            b 5 d 3 3 d 5 b 
-            b 5 3 5 5 1 5 b 
-            c 5 3 5 5 1 d c 
-            c d d 1 1 d d c 
-            . f d d d d f . 
-            . . f f f f . . 
-            `, SpriteKind.CoinsCollect)
-        tiles.placeOnTile(Coins, value)
-        Coins.scale = 1.25
-        animation.runImageAnimation(
-        Coins,
-        [img`
-            . . b b b b . . 
-            . b 5 5 5 5 b . 
-            b 5 d 3 3 d 5 b 
-            b 5 3 5 5 1 5 b 
-            c 5 3 5 5 1 d c 
-            c d d 1 1 d d c 
-            . f d d d d f . 
-            . . f f f f . . 
-            `,img`
-            . . b b b . . . 
-            . b 5 5 5 b . . 
-            b 5 d 3 d 5 b . 
-            b 5 3 5 1 5 b . 
-            c 5 3 5 1 d c . 
-            c 5 d 1 d d c . 
-            . f d d d f . . 
-            . . f f f . . . 
-            `,img`
-            . . . b b . . . 
-            . . b 5 5 b . . 
-            . b 5 d 1 5 b . 
-            . b 5 3 1 5 b . 
-            . c 5 3 1 d c . 
-            . c 5 1 d d c . 
-            . . f d d f . . 
-            . . . f f . . . 
-            `,img`
-            . . . b b . . . 
-            . . b 5 5 b . . 
-            . . b 1 1 b . . 
-            . . b 5 5 b . . 
-            . . b d d b . . 
-            . . c d d c . . 
-            . . c 3 3 c . . 
-            . . . f f . . . 
-            `,img`
-            . . . b b . . . 
-            . . b 5 5 b . . 
-            . b 5 1 d 5 b . 
-            . b 5 1 3 5 b . 
-            . c d 1 3 5 c . 
-            . c d d 1 5 c . 
-            . . f d d f . . 
-            . . . f f . . . 
-            `,img`
-            . . . b b b . . 
-            . . b 5 5 5 b . 
-            . b 5 d 3 d 5 b 
-            . b 5 1 5 3 5 b 
-            . c d 1 5 3 5 c 
-            . c d d 1 d 5 c 
-            . . f d d d f . 
-            . . . f f f . . 
-            `],
-        500,
-        true
-        )
-    }
-}
 function SetCopCar () {
     for (let value of tiles.getTilesByType(assets.tile`myTile3`)) {
         CopCar = sprites.create(img`
@@ -742,7 +661,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile30`, function (sprite, 
     PullOutCopCar()
 })
 let PlayerWinGame: Sprite = null
-let CopCar2: Sprite = null
+let VelocityCopCars2: Sprite = null
 let Coins: Sprite = null
 let CopCar: Sprite = null
 let MainCar: Sprite = null
@@ -751,10 +670,8 @@ tiles.setCurrentTilemap(tilemap`level2`)
 info.setScore(1)
 SpawnMainCar()
 SetCopCar()
-CollectCoins2()
-PurpleLocatons()
-LightBlueLocations()
-DarkBlueLocations2()
+CollectCoins()
+Locations()
 game.onUpdate(function () {
     if (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenInnerNorthWest) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenInnerSouthEast) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenInnerSouthWest) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenInnerNorthEast) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterWest0) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterEast1) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterSouth0) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterNorth0) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterSouthEast) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterNorthEast) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterSouthWest) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterNorth1) || (tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterNorthWest) || tiles.tileAtLocationEquals(MainCar.tilemapLocation(), sprites.dungeon.greenOuterSouth2)))))))))))))) {
         game.gameOver(false)
@@ -777,6 +694,6 @@ game.onUpdateInterval(1000, function () {
 })
 game.onUpdateInterval(4000, function () {
     if (info.score() == 2) {
-        SetCopCar2()
+        VelocityCopCars()
     }
 })
